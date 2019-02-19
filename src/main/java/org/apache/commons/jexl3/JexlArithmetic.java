@@ -1492,4 +1492,72 @@ public class JexlArithmetic {
     public final Object matches(Object lhs, Object rhs) {
         return contains(rhs, lhs);
     }
+
+    public Object movl(Object left, Object right) {
+        if (left == null && right == null) {
+            return controlNullNullOperands();
+        }
+        boolean strconcat = strict
+                            ? left instanceof String || right instanceof String
+                            : left instanceof String && right instanceof String;
+        if (!strconcat) {
+            try {
+                // if either are bigdecimal use that type
+                if (left instanceof BigDecimal || right instanceof BigDecimal) {
+                    BigDecimal l = toBigDecimal(left);
+                    BigDecimal r = toBigDecimal(right);
+                    return l.longValue() << r.intValue();
+                }
+                // if either are floating point (double or float) use double
+                if (isFloatingPointNumber(left) || isFloatingPointNumber(right)) {
+                    double l = toDouble(left);
+                    double r = toDouble(right);
+                    return (long)l << (int)r;
+                }
+                // otherwise treat as integers
+                BigInteger l = toBigInteger(left);
+                BigInteger r = toBigInteger(right);
+                return l.longValue() << r.intValue();
+            } catch (java.lang.NumberFormatException nfe) {
+                if (left == null || right == null) {
+                    controlNullOperand();
+                }
+            }
+        }
+        return toString(left).concat(toString(right));
+    }
+
+	public Object movr(Object left, Object right) {
+        if (left == null && right == null) {
+            return controlNullNullOperands();
+        }
+        boolean strconcat = strict
+                            ? left instanceof String || right instanceof String
+                            : left instanceof String && right instanceof String;
+        if (!strconcat) {
+            try {
+                // if either are bigdecimal use that type
+                if (left instanceof BigDecimal || right instanceof BigDecimal) {
+                    BigDecimal l = toBigDecimal(left);
+                    BigDecimal r = toBigDecimal(right);
+                    return l.longValue() >> r.intValue();
+                }
+                // if either are floating point (double or float) use double
+                if (isFloatingPointNumber(left) || isFloatingPointNumber(right)) {
+                    double l = toDouble(left);
+                    double r = toDouble(right);
+                    return (long)l >> (int)r;
+                }
+                // otherwise treat as integers
+                BigInteger l = toBigInteger(left);
+                BigInteger r = toBigInteger(right);
+                return l.longValue() >> r.intValue();
+            } catch (java.lang.NumberFormatException nfe) {
+                if (left == null || right == null) {
+                    controlNullOperand();
+                }
+            }
+        }
+        return toString(left).concat(toString(right));
+    }
 }
