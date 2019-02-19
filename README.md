@@ -9,3 +9,35 @@ org/apache/commons/jexl3/parser/ParserVisitor.java<br/>
 org/apache/commons/jexl3/parser/Parser.jjt<br/>
 org/apache/commons/jexl3/JexlArithmetic.java<br/>
 org/apache/commons/jexl3/JexlOperator.java<br/>
+
+## Example code
+````java
+import org.apache.commons.jexl3.JexlBuilder;
+import org.apache.commons.jexl3.JexlContext;
+import org.apache.commons.jexl3.JexlEngine;
+import org.apache.commons.jexl3.JexlExpression;
+import org.apache.commons.jexl3.MapContext;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		JexlBuilder builder = new JexlBuilder();
+		JexlEngine engine = builder.create();
+		JexlExpression expression = null;
+		JexlContext context = null;
+
+		context = new MapContext();
+		context.set("l", 3);
+		context.set("r", 26);
+
+		expression = engine.createExpression("l << (r+1)");
+		Object ret = expression.evaluate(context);
+
+		if (ret instanceof Long) {
+			Long val = (Long) ret;
+			System.out.println(String.format("0x%08X", val.longValue()));
+		}
+	}
+}
+````
