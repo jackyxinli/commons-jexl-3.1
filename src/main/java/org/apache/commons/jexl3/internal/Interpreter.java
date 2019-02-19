@@ -69,6 +69,8 @@ import org.apache.commons.jexl3.parser.ASTMapEntry;
 import org.apache.commons.jexl3.parser.ASTMapLiteral;
 import org.apache.commons.jexl3.parser.ASTMethodNode;
 import org.apache.commons.jexl3.parser.ASTModNode;
+import org.apache.commons.jexl3.parser.ASTMovLeftNode;
+import org.apache.commons.jexl3.parser.ASTMovRightNode;
 import org.apache.commons.jexl3.parser.ASTMulNode;
 import org.apache.commons.jexl3.parser.ASTNENode;
 import org.apache.commons.jexl3.parser.ASTNEWNode;
@@ -1907,5 +1909,29 @@ public class Interpreter extends InterpreterBase {
         return context instanceof JexlContext.AnnotationProcessor
                 ? ((JexlContext.AnnotationProcessor) context).processAnnotation(annotation, args, stmt)
                 : stmt.call();
+    }
+
+	@Override
+    protected Object visit(ASTMovLeftNode node, Object data) {
+        Object left = node.jjtGetChild(0).jjtAccept(this, data);
+        Object right = node.jjtGetChild(1).jjtAccept(this, data);
+        try {
+            Object result = operators.tryOverload(node, JexlOperator.MOVL, left, right);
+            return result != JexlEngine.TRY_FAILED ? result : arithmetic.movl(left, right);
+        } catch (ArithmeticException xrt) {
+            throw new JexlException(node, "+ error", xrt);
+        }
+    }
+
+	@Override
+    protected Object visit(ASTMovRightNode node, Object data) {
+        Object left = node.jjtGetChild(0).jjtAccept(this, data);
+        Object right = node.jjtGetChild(1).jjtAccept(this, data);
+        try {
+            Object result = operators.tryOverload(node, JexlOperator.MOVR, left, right);
+            return result != JexlEngine.TRY_FAILED ? result : arithmetic.movr(left, right);
+        } catch (ArithmeticException xrt) {
+            throw new JexlException(node, "+ error", xrt);
+        }
     }
 }
