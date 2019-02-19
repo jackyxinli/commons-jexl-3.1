@@ -11,7 +11,7 @@ org/apache/commons/jexl3/JexlArithmetic.java<br/>
 org/apache/commons/jexl3/JexlOperator.java<br/>
 
 ## Compile
-1.  Install the latest version of [Maven](http://maven.apache.org/)<br>
+1.  Install the latest version of [Maven](http://maven.apache.org/).<br>
 2.  Set environment in local operation system.<br>
 3.  Run commands in command line(Windows) or terminal(Unix/Linux).<br>
 3.1 mvn package<br/>
