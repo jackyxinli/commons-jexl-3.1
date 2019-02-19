@@ -301,7 +301,23 @@ public enum JexlOperator {
      * <br><strong>Method:</strong> <code>Iterator&lt;Object&gt; forEach(R y);</code>.
      * @since 3.1
      */
-    FOR_EACH("for(...)", "forEach", 1);
+    FOR_EACH("for(...)", "forEach", 1),
+
+	/**
+     * MovLeft operator.
+     * <br><strong>Syntax:</strong> <code>x << y</code>
+     * <br><strong>Method:</strong> <code>T movl(L x, R y);</code>.
+     * @see JexlArithmetic#movl
+     */
+    MOVL("<<", "movl", 2),
+
+	/**
+     * MovRight operator.
+     * <br><strong>Syntax:</strong> <code>x >> y</code>
+     * <br><strong>Method:</strong> <code>T movr(L x, R y);</code>.
+     * @see JexlArithmetic#movr
+     */
+    MOVR(">>", "movr", 2);
 
     /**
      * The operator symbol.
