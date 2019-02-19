@@ -58,6 +58,8 @@ import org.apache.commons.jexl3.parser.ASTMapEntry;
 import org.apache.commons.jexl3.parser.ASTMapLiteral;
 import org.apache.commons.jexl3.parser.ASTMethodNode;
 import org.apache.commons.jexl3.parser.ASTModNode;
+import org.apache.commons.jexl3.parser.ASTMovLeftNode;
+import org.apache.commons.jexl3.parser.ASTMovRightNode;
 import org.apache.commons.jexl3.parser.ASTMulNode;
 import org.apache.commons.jexl3.parser.ASTNENode;
 import org.apache.commons.jexl3.parser.ASTNEWNode;
@@ -1003,5 +1005,15 @@ public class Debugger extends ParserVisitor implements JexlInfo.Detail {
             acceptStatement(child, data);
         }
         return data;
+    }
+
+	@Override
+    protected Object visit(ASTMovLeftNode node, Object data) {
+        return additiveNode(node, " << ", data);
+    }
+
+	@Override
+    protected Object visit(ASTMovRightNode node, Object data) {
+        return additiveNode(node, " >> ", data);
     }
 }
