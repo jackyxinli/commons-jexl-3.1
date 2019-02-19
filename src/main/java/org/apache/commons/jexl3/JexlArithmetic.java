@@ -1493,6 +1493,17 @@ public class JexlArithmetic {
         return contains(rhs, lhs);
     }
 
+	/**
+     * Performs a left shift of an integer value by Bits bit positions.
+     * <p>
+     * The movl(<<) operator performs a left shift of an integer value by Bits bit positions.
+     * Vacated bits are filled in on the right with zero bits.
+     * </p>
+     *
+     * @param left  left argument
+     * @param right  right argument
+     * @return left << right.
+     */
     public Object movl(Object left, Object right) {
         if (left == null && right == null) {
             return controlNullNullOperands();
@@ -1527,6 +1538,17 @@ public class JexlArithmetic {
         return toString(left).concat(toString(right));
     }
 
+	/**
+     * Performs a right shift of an integer value by Bits bit positions.
+     * <p>
+     * The movr(>>) operator performs a right shift of an integer value by Bits bit positions.
+     * Vacated bits are filled in on the right with zero bits.
+     * </p>
+     *
+     * @param left  left argument
+     * @param right  right argument
+     * @return left >> right.
+     */
 	public Object movr(Object left, Object right) {
         if (left == null && right == null) {
             return controlNullNullOperands();
