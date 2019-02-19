@@ -188,6 +188,8 @@ TOKEN_MGR_DECLS : {
     | < and : "&" >
     | < or : "|" >
     | < xor : "^" >
+    | < movl : "<<" >
+    | < movr : ">>" >
 
     | < tilda : "~" >
     | < range : ".." >
@@ -534,6 +536,10 @@ void AdditiveExpression() #void : {}
     <plus> MultiplicativeExpression() #AddNode(2)
   |
     <minus> MultiplicativeExpression() #SubNode(2)
+  |
+    <movl> MultiplicativeExpression() #MovLeftNode(2)
+  |
+    <movr> MultiplicativeExpression() #MovRightNode(2)
   ) )*
 }
 
