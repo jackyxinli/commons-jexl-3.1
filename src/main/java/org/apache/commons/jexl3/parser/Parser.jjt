@@ -177,6 +177,8 @@ TOKEN_MGR_DECLS : {
     | < and_assign : "&=" >
     | < or_assign : "|=" >
     | < xor_assign : "^=" >
+    | < movl_assign : "<<=" >
+    | < movr_assign : ">>=" >
 
     | < assign : "=" >
     | < plus : "+" >
@@ -438,6 +440,10 @@ void AssignmentExpression() #void : {}
     <xor_assign> Expression() #SetXorNode(2)
   |
     <minus_assign>  Expression() #SetSubNode(2)
+  |
+    <movl_assign>  Expression() #SetMovLeftNode(2)
+  |
+    <movr_assign>  Expression() #SetMovRightNode(2)
   |
     <assign> Expression() #Assignment(2)
   ) )*
