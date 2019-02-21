@@ -81,6 +81,12 @@ public class Main {
 			Long val = (Long) ret;
 			System.out.println(String.format("0x%08X", val.longValue()));
 		}
+		
+		Object var = context.get("l");
+		if (var instanceof Long) {
+			Long val = (Long) var;
+			System.out.println(String.format("0x%08X", val.longValue()));
+		}
 	}
 }
 ````
