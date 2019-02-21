@@ -317,7 +317,21 @@ public enum JexlOperator {
      * <br><strong>Method:</strong> <code>T movr(L x, R y);</code>.
      * @see JexlArithmetic#movr
      */
-    MOVR(">>", "movr", 2);
+    MOVR(">>", "movr", 2),
+
+	/**
+     * Self-movl operator.
+     * <br><strong>Syntax:</strong> <code>x <<= y</code>
+     * <br><strong>Method:</strong> <code>T selfMovL(L x, R y);</code>.
+     */
+    SELF_MOVL("<<=", "selfMovL", MOVL),
+
+	/**
+     * Self-movr operator.
+     * <br><strong>Syntax:</strong> <code>x >>= y</code>
+     * <br><strong>Method:</strong> <code>T selfMovR(L x, R y);</code>.
+     */
+    SELF_MOVR(">>=", "selfMovR", MOVR);
 
     /**
      * The operator symbol.
