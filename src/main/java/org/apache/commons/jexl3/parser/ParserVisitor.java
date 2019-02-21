@@ -185,4 +185,8 @@ public abstract class ParserVisitor {
 	protected abstract Object visit(ASTMovLeftNode node, Object data);
 
 	protected abstract Object visit(ASTMovRightNode node, Object data);
+
+	protected abstract Object visit(ASTSetMovLeftNode node, Object data);
+
+	protected abstract Object visit(ASTSetMovRightNode node, Object data);
 }
