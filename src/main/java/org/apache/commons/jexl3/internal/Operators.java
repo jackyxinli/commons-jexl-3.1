@@ -156,6 +156,10 @@ public class Operators {
                 return arithmetic.or(args[0], args[1]);
             case SELF_XOR:
                 return arithmetic.xor(args[0], args[1]);
+			case SELF_MOVL:
+				return arithmetic.movl(args[0], args[1]);
+			case SELF_MOVR:
+				return arithmetic.movr(args[0], args[1]);
             default:
                 throw new JexlException.Operator(node, operator.getOperatorSymbol(), null);
         }
