@@ -90,6 +90,8 @@ import org.apache.commons.jexl3.parser.ASTSetAndNode;
 import org.apache.commons.jexl3.parser.ASTSetDivNode;
 import org.apache.commons.jexl3.parser.ASTSetLiteral;
 import org.apache.commons.jexl3.parser.ASTSetModNode;
+import org.apache.commons.jexl3.parser.ASTSetMovLeftNode;
+import org.apache.commons.jexl3.parser.ASTSetMovRightNode;
 import org.apache.commons.jexl3.parser.ASTSetMultNode;
 import org.apache.commons.jexl3.parser.ASTSetOrNode;
 import org.apache.commons.jexl3.parser.ASTSetSubNode;
@@ -1933,5 +1935,15 @@ public class Interpreter extends InterpreterBase {
         } catch (ArithmeticException xrt) {
             throw new JexlException(node, "+ error", xrt);
         }
+    }
+
+	@Override
+    protected Object visit(ASTSetMovLeftNode node, Object data) {
+        return executeAssign(node, JexlOperator.SELF_MOVL, data);
+    }
+
+	@Override
+    protected Object visit(ASTSetMovRightNode node, Object data) {
+        return executeAssign(node, JexlOperator.SELF_MOVR, data);
     }
 }
