@@ -2,14 +2,14 @@ commons-jexl-3.1
 ================
 The original version does not support bit move operation. So I add bit move operators like "**<<**" and "**>>**" for bit move operation, and bit move assignment operators like "**<<=**" and "**>>=**" are supported. Then parser can parse expression like "3 << 26" or "l<<=r", the result is 0x0C000000 in Hex format.
 
-Those files are modified and listed below:  
-org/apache/commons/jexl3/internal/Debugger.java  
-org/apache/commons/jexl3/internal/Interpreter.java  
-org/apache/commons/jexl3/internal/Operators.java  
-org/apache/commons/jexl3/parser/ParserVisitor.java  
-org/apache/commons/jexl3/parser/Parser.jjt  
-org/apache/commons/jexl3/JexlArithmetic.java  
-org/apache/commons/jexl3/JexlOperator.java  
+These listed files are modified.  
+1.  org/apache/commons/jexl3/internal/Debugger.java  
+2.  org/apache/commons/jexl3/internal/Interpreter.java  
+3.  org/apache/commons/jexl3/internal/Operators.java  
+4.  org/apache/commons/jexl3/parser/ParserVisitor.java  
+5.  org/apache/commons/jexl3/parser/Parser.jjt  
+6.  org/apache/commons/jexl3/JexlArithmetic.java  
+7.  org/apache/commons/jexl3/JexlOperator.java  
 
 ## Compile
 1.  Install JDK 1.8 or upper.  
